@@ -5,8 +5,9 @@
   cmake,
   asciidoctor,
   installShellFiles,
+  python3,
+  withPython ? false,
 }:
-
 stdenv.mkDerivation rec {
   pname = "timewarrior";
   version = "1.8.0";
@@ -24,6 +25,8 @@ stdenv.mkDerivation rec {
     asciidoctor
     installShellFiles
   ];
+
+  buildInputs = [] ++ lib.optionals withPython [python3];
 
   dontUseCmakeBuildDir = true;
 
